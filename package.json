@@ -1,5 +1,5 @@
 {
-  "name": "firstproject",
+  "name": "card1",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -14,8 +14,7 @@
     "expo": "~46.0.13",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
-    "react-native": "0.69.6",
-    "react-native-snap-carousel": "^3.9.1"
+    "react-native": "0.69.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

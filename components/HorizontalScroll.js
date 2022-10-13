@@ -1,3 +1,4 @@
+
 import {
   Animated,
   ScrollView,
@@ -7,24 +8,32 @@ import {
   useWindowDimensions,
   TouchableOpacity,
   Pressable,
-} from 'react-native';
+} from "react-native";
 import React, { useRef } from 'react';
-import data from '../data';
+import data from "../data";
 
-function HorizontalScroll({ navigation }) {
+
+
+
+function HorizontalScroll  ({ navigation })  {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   let { width: windowWidth, height: windowHeight } = useWindowDimensions();
   windowHeight = windowHeight - 300;
 
   return (
-    <View style={styles.card}>
+    <View
+      style={{
+        marginTop: 20,
+        margin: 10,
+      }}
+    >
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         pagingEnabled={true}
         scrollEventThrottle={5}
-        snapToAlignment={'center'}
+        snapToAlignment={"center"}
         decelerationRate="fast"
         scrollEnabled={true}
         bounces={false}
@@ -34,14 +43,19 @@ function HorizontalScroll({ navigation }) {
         )}
       >
         {data.dummyData.map((dummyData, index) => (
-          <TouchableOpacity
-            activeOpacity={0.9}
-            key={index}
+          <Pressable
             onPress={() => {
-              navigation.navigate('DetailScreen', {
+              navigation.navigate("DetailScreen", {
                 head: dummyData.title,
                 body: dummyData.color,
               });
+            }}
+            style={{
+              height: 220,
+              width: 349,
+              marginHorizontal: 10,
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Animated.View
@@ -50,8 +64,8 @@ function HorizontalScroll({ navigation }) {
                 backgroundColor: dummyData.color,
                 flex: 1,
                 marginTop: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: "center",
+                alignItems: "center",
                 height: 180,
                 width: 350,
                 marginHorizontal: 10,
@@ -62,15 +76,15 @@ function HorizontalScroll({ navigation }) {
                 style={{
                   fontSize: 20,
                   padding: 15,
-                  color: 'white',
-                  textAlign: 'center',
+                  color: "white",
+                  textAlign: "center",
                 }}
                 key={index.id}
               >
                 {dummyData.title}
               </Text>
             </Animated.View>
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </ScrollView>
 
@@ -83,7 +97,7 @@ function HorizontalScroll({ navigation }) {
               windowWidth * (index + 1),
             ],
             outputRange: [8, 16, 8],
-            extrapolate: 'clamp',
+            extrapolate: "clamp",
           });
 
           return (
@@ -99,29 +113,20 @@ function HorizontalScroll({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 10,
-    borderRadius: 12,
-    marginTop: 245,
-    marginBottom: 245,
-    bottom: 230,
+  indicatorContainer:{
+    flexDirection : "row",
+    justifyContent : "center",
+    alignItems : "center",
   },
-  indicatorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  normalDots: {
+  normalDots:{
     width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: 'grey',
+    height:8,
+    borderRadius:4,
+    backgroundColor:"grey",
     marginHorizontal: 3,
     marginTop: 15,
-  },
-});
+    
+  }
+})
 
-export default HorizontalScroll;
+  export default HorizontalScroll;
